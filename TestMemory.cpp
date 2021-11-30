@@ -47,9 +47,10 @@ void testPrimitives()
     {
         auto p1b = p1;
         auto p2b = p2;
-
+        std::cout << "p2 count : " << p2.use_count() << " p2b count: " << p2b.use_count() << std::endl;
         EXPECT_EQ(p1.use_count(), p2.use_count());
     }
+    std::cout << "p2 count after scope: " << p2.use_count() << std::endl;
 
     EXPECT_EQ(p1.use_count(), p2.use_count());
 }
@@ -57,9 +58,9 @@ void testPrimitives()
 TEST(Primitives, DefaultConstruction)
 {
     testPrimitives<int>();
-    testPrimitives<unsigned int>();
-    testPrimitives<bool>();
-    testPrimitives<double>();
+    // testPrimitives<unsigned int>();
+    // testPrimitives<bool>();
+    // testPrimitives<double>();
 }
 
 // TEST(Primitives, OverloadedConstructors)
