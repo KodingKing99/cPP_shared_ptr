@@ -126,17 +126,17 @@ TEST(ComplexTypes, PointerOperator)
     EXPECT_EQ(p1->m_name, p2->m_name);
 }
 
-// TEST(Array, CanCreateArray)
-// {
-//     std::array<int, 4> truth{2, 3, 5, 7};
-//     usu::shared_ptr<int[]> primes = usu::make_shared_array<int, 4>();
-//     primes[0] = truth[0];
-//     primes[1] = truth[1];
-//     primes[2] = truth[2];
-//     primes[3] = truth[3];
+TEST(Array, CanCreateArray)
+{
+    std::array<int, 4> truth{ 2, 3, 5, 7 };
+    usu::shared_ptr<int[]> primes = usu::make_shared_array<int, 4>();
+    primes[0] = truth[0];
+    primes[1] = truth[1];
+    primes[2] = truth[2];
+    primes[3] = truth[3];
 
-//     for (unsigned int i = 0; i < primes.size(); i++)
-//     {
-//         EXPECT_EQ(primes[i], truth[i]);
-//     }
-// }
+    for (unsigned int i = 0; i < primes.size(); i++)
+    {
+        EXPECT_EQ(primes[i], truth[i]);
+    }
+}

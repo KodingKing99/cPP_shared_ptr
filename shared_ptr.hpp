@@ -73,9 +73,52 @@ namespace usu
         unsigned int* m_ref_count;
         T* m_raw_ptr;
     };
+    template <typename T>
+    class shared_ptr<T[]>
+    {
+      public:
+        shared_ptr(T* t, std::size_t number) :
+            pointer(t), count(new unsigned int(1)), thisSize(number) {}
+        ~shared_ptr()
+        {
+            *count -= 1;
+
+            if (count == 0)
+            {
+                delete[] pointer;
+                delete count;
+            }
+        }
+
+        T& operator[](int index)
+        {
+            if (static_cast<std::size_t>(index) >= thisSize)
+            {
+                std::cout << "Index " << index << " out of bounds" << std::endl;
+                exit(1);
+            }
+
+            return pointer[index];
+        }
+
+        std::size_t size()
+        {
+            return thisSize;
+        }
+
+      private:
+        T* pointer;
+        unsigned int* count;
+        std::size_t thisSize;
+    };
     template <typename T, typename... Args>
     shared_ptr<T> make_shared(Args&&... args)
     {
         return shared_ptr<T>(new T(std::forward<Args>(args)...));
+    }
+    template <typename T, unsigned int N>
+    shared_ptr<T[]> make_shared_array()
+    {
+        return shared_ptr<T[]>(new T[N], N);
     }
 } // namespace usu

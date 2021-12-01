@@ -103,19 +103,19 @@ void demoSharedPointer()
     std::cout << std::endl;
     std::cout << "--- Member Access ---" << std::endl;
 
-    // p13->showMessage("from p13");
-    // p14->showMessage("from p14");
+    p13->showMessage("from p13");
+    p14->showMessage("from p14");
 
-    // (*p13).showMessage("from (*p13)");
-    // (*p14).showMessage("from (*p14)");
-    // MyClass* x = p13.get();
-    // x->showMessage("from p13.get()");
-    // MyClass* y = p14.get();
-    // y->showMessage("from p14.get()");
+    (*p13).showMessage("from (*p13)");
+    (*p14).showMessage("from (*p14)");
+    MyClass* x = p13.get();
+    x->showMessage("from p13.get()");
+    MyClass* y = p14.get();
+    y->showMessage("from p14.get()");
 
-    // usu::shared_ptr<MyClass[]> a1 = usu::make_shared_array<MyClass, 4>();
-    // for (unsigned int i = 0; i < a1.size(); i++)
-    // {
-    //     a1[i].showMessage("this is a test");
-    // }
+    usu::shared_ptr<MyClass[]> a1 = usu::make_shared_array<MyClass, 4>();
+    for (unsigned int i = 0; i < a1.size(); i++)
+    {
+        a1[i].showMessage("this is a test");
+    }
 }
