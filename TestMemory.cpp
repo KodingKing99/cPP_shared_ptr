@@ -47,10 +47,10 @@ void testPrimitives()
     {
         auto p1b = p1;
         auto p2b = p2;
-        std::cout << "p2 count : " << p2.use_count() << " p2b count: " << p2b.use_count() << std::endl;
+        // std::cout << "p2 count : " << p2.use_count() << " p2b count: " << p2b.use_count() << std::endl;
         EXPECT_EQ(p1.use_count(), p2.use_count());
     }
-    std::cout << "p2 count after scope: " << p2.use_count() << std::endl;
+    // std::cout << "p2 count after scope: " << p2.use_count() << std::endl;
 
     EXPECT_EQ(p1.use_count(), p2.use_count());
 }
@@ -58,73 +58,73 @@ void testPrimitives()
 TEST(Primitives, DefaultConstruction)
 {
     testPrimitives<int>();
-    // testPrimitives<unsigned int>();
-    // testPrimitives<bool>();
-    // testPrimitives<double>();
+    testPrimitives<unsigned int>();
+    testPrimitives<bool>();
+    testPrimitives<double>();
 }
 
-// TEST(Primitives, OverloadedConstructors)
-// {
-//     std::shared_ptr<int> p1 = std::make_shared<int>(10);
-//     usu::shared_ptr<int> p2 = usu::make_shared<int>(10);
+TEST(Primitives, OverloadedConstructors)
+{
+    std::shared_ptr<int> p1 = std::make_shared<int>(10);
+    usu::shared_ptr<int> p2 = usu::make_shared<int>(10);
 
-//     EXPECT_EQ(p1.use_count(), p2.use_count());
-//     EXPECT_EQ(*p1, *p2);
-// }
+    EXPECT_EQ(p1.use_count(), p2.use_count());
+    EXPECT_EQ(*p1, *p2);
+}
 
-// TEST(Primitives, CanReuse)
-// {
-//     std::shared_ptr<int> p1 = std::make_shared<int>();
-//     usu::shared_ptr<int> p2 = usu::make_shared<int>();
+TEST(Primitives, CanReuse)
+{
+    std::shared_ptr<int> p1 = std::make_shared<int>();
+    usu::shared_ptr<int> p2 = usu::make_shared<int>();
 
-//     p1 = std::make_shared<int>(10);
-//     p2 = usu::make_shared<int>(10);
+    p1 = std::make_shared<int>(10);
+    p2 = usu::make_shared<int>(10);
 
-//     EXPECT_EQ(p1.use_count(), p2.use_count());
-//     EXPECT_EQ(*p1, *p2);
-// }
+    EXPECT_EQ(p1.use_count(), p2.use_count());
+    EXPECT_EQ(*p1, *p2);
+}
 
-// TEST(Primitives, CopyMoveOperations)
-// {
-//     std::shared_ptr<int> p1 = std::make_shared<int>();
-//     usu::shared_ptr<int> p2 = usu::make_shared<int>();
+TEST(Primitives, CopyMoveOperations)
+{
+    std::shared_ptr<int> p1 = std::make_shared<int>();
+    usu::shared_ptr<int> p2 = usu::make_shared<int>();
 
-//     p1 = testCopyMoveConstructors(p1);
-//     p2 = testCopyMoveConstructors(p2);
+    p1 = testCopyMoveConstructors(p1);
+    p2 = testCopyMoveConstructors(p2);
 
-//     EXPECT_EQ(p1.use_count(), p2.use_count());
-// }
+    EXPECT_EQ(p1.use_count(), p2.use_count());
+}
 
-// TEST(ComplexTypes, CanCreateComplexTypes)
-// {
-//     std::shared_ptr<std::string> p1 = std::make_shared<std::string>();
-//     usu::shared_ptr<std::string> p2 = usu::make_shared<std::string>();
+TEST(ComplexTypes, CanCreateComplexTypes)
+{
+    std::shared_ptr<std::string> p1 = std::make_shared<std::string>();
+    usu::shared_ptr<std::string> p2 = usu::make_shared<std::string>();
 
-//     EXPECT_EQ(p1.use_count(), p2.use_count());
-//     EXPECT_EQ(*p1, *p2);
-// }
+    EXPECT_EQ(p1.use_count(), p2.use_count());
+    EXPECT_EQ(*p1, *p2);
+}
 
-// TEST(ComplexTypes, OverloadedConstructors)
-// {
-//     std::shared_ptr<std::string> p1 = std::make_shared<std::string>("This is a test");
-//     usu::shared_ptr<std::string> p2 = usu::make_shared<std::string>("This is a test");
+TEST(ComplexTypes, OverloadedConstructors)
+{
+    std::shared_ptr<std::string> p1 = std::make_shared<std::string>("This is a test");
+    usu::shared_ptr<std::string> p2 = usu::make_shared<std::string>("This is a test");
 
-//     EXPECT_EQ(p1.use_count(), p2.use_count());
-//     EXPECT_EQ(*p1, *p2);
-// }
+    EXPECT_EQ(p1.use_count(), p2.use_count());
+    EXPECT_EQ(*p1, *p2);
+}
 
-// TEST(ComplexTypes, PointerOperator)
-// {
-//     auto p1 = std::make_shared<MyClass>("Some Name");
-//     auto p2 = usu::make_shared<MyClass>("Some Name");
+TEST(ComplexTypes, PointerOperator)
+{
+    auto p1 = std::make_shared<MyClass>("Some Name");
+    auto p2 = usu::make_shared<MyClass>("Some Name");
 
-//     EXPECT_EQ(p1.use_count(), p2.use_count());
-//     EXPECT_EQ(p1->m_name, p2->m_name);
+    EXPECT_EQ(p1.use_count(), p2.use_count());
+    EXPECT_EQ(p1->m_name, p2->m_name);
 
-//     p1->updateName("Updated Name");
-//     p2->updateName("Updated Name");
-//     EXPECT_EQ(p1->m_name, p2->m_name);
-// }
+    p1->updateName("Updated Name");
+    p2->updateName("Updated Name");
+    EXPECT_EQ(p1->m_name, p2->m_name);
+}
 
 // TEST(Array, CanCreateArray)
 // {
